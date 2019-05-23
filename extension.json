@@ -1,0 +1,28 @@
+{
+  "plugin_type": "widget",
+  "name": "Composite Metrics Tracker",
+  "edit_page_url": null,
+  "form_schema": [
+    {
+      "default_value": "",
+      "field_type": "text",
+      "name": "composite_metric_api_name",
+      "label": "Composite Metric API Name",
+      "options": null
+    },
+    {
+      "default_value": "",
+      "field_type": "multi_text",
+      "name": "event_list",
+      "label": "Event List",
+      "options": null
+    }
+  ],
+  "description": "",
+  "options": {
+    "apply_js": "window.__optCompositeTracker.setParams({\n  composite_metric_api_name: extension.composite_metric_api_name,\n  event_list: extension.event_list,\n  instance: extension.$instance\n});",
+    "html": "",
+    "css": "",
+    "undo_js": ""
+  }
+}
