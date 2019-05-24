@@ -15,7 +15,7 @@ window.__optCompositeTracker = (function() {
         // this is a little confusing. 
         // Maybe just do a one-time init to localStorage and skip for 
         // subsequent calls of the extension... 
-        allExtData[paramsFromExtension.instance] = Object.assign(allExtData[paramsFromExtension.instance] || {}, paramsFromExtension);
+        allExtData[paramsFromExtension.instance] = Object.assign(paramsFromExtension || {}, allExtData[paramsFromExtension.instance] || {});
         logger.log('+++ ALL EXT DATA', allExtData, paramsFromExtension);        
         logger.log('+++ SET PARAMS', extKey, allExtData);
         writeParams(allExtData);
@@ -43,27 +43,25 @@ window.__optCompositeTracker = (function() {
             madeChange = false;
         for(extensionInstance in allExtensionData) {
             var compositeMetricAPIName = allExtensionData[extensionInstance].composite_metric_api_name,
-                evtList = allExtensionData[extensionInstance].event_list.split(/,\s*/),
-                alreadyFiredCompositeMetric = !!allExtensionData[extensionInstance].composite_fired;
+                alreadyFiredCompositeMetric = !!allExtensionData[extensionInstance].composite_fired,
+                allFired = false;
             if(alreadyFiredCompositeMetric) {
                 logger.log('+++ Already fired composite metric');
                 continue;
-            }                
-            if(!allExtensionData[extensionInstance].fired) allExtensionData[extensionInstance].fired = {};
-            logger.log('+++ Heard: ' + api_name, 'Already fired:', allExtensionData[extensionInstance].fired, ' check against ', evtList);
-            if(evtList.indexOf(api_name) > -1 && !(api_name in allExtensionData[extensionInstance].fired)) {
-                logger.log('+++ New evt', api_name);       
-                allExtensionData[extensionInstance].fired[api_name] = 1; // mark as seen
+            }                            
+            logger.log('+++ Heard: ' + api_name, 'Events: ', allExtensionData[extensionInstance].events);
+            if(api_name in allExtensionData[extensionInstance].events) {
+                allExtensionData[extensionInstance].events[api_name] = 1;
+                logger.log('+++ Mark event tracked', allExtensionData[extensionInstance].events);                
                 madeChange = true;
             }
-            if(evtList.sort().join() === Object.keys(allExtensionData[extensionInstance].fired).sort().join()) {
+            allFired = Object.values(allExtensionData[extensionInstance].events).every(function(v) { return v === 1 });            
+            if(allFired) {
               logger.log('+++ Saw all events, fire:', compositeMetricAPIName);
               allExtensionData[extensionInstance].composite_fired = 1;
               fireEvent(compositeMetricAPIName);
               madeChange = true;
             }
-            // check if all events in event_list have been converted on
-
         }
         if(madeChange) writeParams(allExtensionData);
     }             
@@ -79,7 +77,7 @@ window.__optCompositeTracker = (function() {
         heardEvent(event.data.apiName || event.data.name);
       }
     });  
-    logger.log('+++ Init __optCompositeTracker v0.1');
+    logger.log('+++ Init __optCompositeTracker v0.3');
 
     var API = {            
         getParams, getParams,
@@ -90,5 +88,3 @@ window.__optCompositeTracker = (function() {
     return API;
     
 })();
-
-

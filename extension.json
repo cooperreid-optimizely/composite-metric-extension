@@ -19,6 +19,6 @@
   ],
   "description": "",
   "options": {
-    "track_layer_decision": "window.__optCompositeTracker.setParams({\n  composite_metric_api_name: extension.composite_metric_api_name,\n  event_list: extension.event_list,\n  instance: 'exp-' + experimentId\n});"
+    "track_layer_decision": "var evtListArray = extension.event_list.split(/,\\s*/),\n    evtFiredMap = {};\n\nevtListArray.forEach(function(evt) {\n  evtFiredMap[evt] = 0;\n});\n\nwindow.__optCompositeTracker.setParams({\n  composite_metric_api_name: extension.composite_metric_api_name,\n  events: evtFiredMap,\n  instance: 'exp-' + experimentId\n});"
   }
 }
