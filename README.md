@@ -24,5 +24,7 @@ Track a metric that is a composite of several other event conversions
 ### Enable console logging
 Turn on logging by setting a localStorage flag `localStorage.setItem('__optCompositeTrackerDebug', 1)`
 
+![debugger](/img/debug2.png)
+
 ### Check localStorage
-![test image size](/img/debug1.png)
+![localstorage](/img/debug1.png)
