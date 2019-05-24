@@ -12,9 +12,10 @@ window.__optCompositeTracker = (function() {
 
     var setParams = function(paramsFromExtension) {
         var allExtData = JSON.parse(localStorage.getItem(extKey)) || {};
-        // this is a little confusing. 
-        // Maybe just do a one-time init to localStorage and skip for 
-        // subsequent calls of the extension... 
+        /**
+        * Any data passed to this function should 
+        * overwrite existing data in localStorage
+        */
         allExtData[paramsFromExtension.instance] = Object.assign(paramsFromExtension || {}, allExtData[paramsFromExtension.instance] || {});
         logger.log('+++ ALL EXT DATA', allExtData, paramsFromExtension);        
         logger.log('+++ SET PARAMS', extKey, allExtData);
