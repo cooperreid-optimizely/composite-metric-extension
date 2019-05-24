@@ -16,5 +16,5 @@ Track a metric that is a composite of several other event conversions
 ![test image size](/img/enable-integration.png)
 
 ### Settings
-* _Composite Metric API Name_ - Indicate the `api_name` of the Custom Event that you created in the third step during installation.
-* _Event List_ - A comma-separate list of `api_names` that all need to be converted on to result in a conversion of the composite metric.
+* `Composite Metric API Name` - Indicate the `api_name` of the Custom Event that you created in the third step during installation.
+* `Event List` - A comma-separate list of `api_names` that all need to be converted on to result in a conversion of the composite metric.
