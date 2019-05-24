@@ -18,3 +18,11 @@ Track a metric that is a composite of several other event conversions
 ### Settings
 * `Composite Metric API Name` - Indicate the `api_name` of the Custom Event that you created in the third step during installation.
 * `Event List` - A comma-separate list of `api_names` that all need to be converted on to result in a conversion of the composite metric.
+
+## Debugging
+
+### Enable console logging
+Turn on logging by setting a localStorage flag `localStorage.setItem('__optCompositeTrackerDebug', 1)`
+
+### Check localStorage
+![test image size](/img/debug1.png)
