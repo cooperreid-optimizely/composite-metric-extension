@@ -13,7 +13,7 @@ Track a metric that is a composite of several other event conversions
 * Check the "Tracked" checkbox to enable
 * Input settings as described in the section below.
 
-![test image size](/img/config-integration.png)
+![test image size](/img/enable-integration.png)
 
 ### Settings
 * _Composite Metric API Name_ - Indicate the `api_name` of the Custom Event that you created in the third step during installation.
