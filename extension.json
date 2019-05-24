@@ -1,7 +1,6 @@
 {
-  "plugin_type": "widget",
-  "name": "Composite Metrics Tracker",
-  "edit_page_url": null,
+  "plugin_type": "analytics_integration",
+  "name": "Composite Metric Tracker",
   "form_schema": [
     {
       "default_value": "",
@@ -12,7 +11,7 @@
     },
     {
       "default_value": "",
-      "field_type": "multi_text",
+      "field_type": "text",
       "name": "event_list",
       "label": "Event List",
       "options": null
@@ -20,9 +19,6 @@
   ],
   "description": "",
   "options": {
-    "apply_js": "window.__optCompositeTracker.setParams({\n  composite_metric_api_name: extension.composite_metric_api_name,\n  event_list: extension.event_list,\n  instance: extension.$instance\n});",
-    "html": "",
-    "css": "",
-    "undo_js": ""
+    "track_layer_decision": "window.__optCompositeTracker.setParams({\n  composite_metric_api_name: extension.composite_metric_api_name,\n  event_list: extension.event_list,\n  instance: 'exp-' + experimentId\n});"
   }
 }
