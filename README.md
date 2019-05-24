@@ -1,5 +1,5 @@
 # Composite Metric Extension
-Track a metric that is a composite of several other event conversions
+Allows you to set up several events that roll up into a single metric.
 
 ## Installing 
 * Copy the [`projectjs.min.js`](https://github.com/cooperreid-optimizely/composite-metric-extension/blob/master/projectjs.min.js) content and add it to your Project Javascript
